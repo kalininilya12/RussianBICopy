@@ -15,7 +15,7 @@ namespace RussianBI.Sql
 		private int tableIndex = 0;
 
 		public RussianBIGramarSqlVisitor(List<Table> model)
-        {
+		{
 			this.model = model;
 		}
 
@@ -74,16 +74,16 @@ namespace RussianBI.Sql
 			{
 				var tableFromModel = this.model.FirstOrDefault(table => table.Name == tableName);
 				if (tableFromModel == null)
-                {
+				{
 					throw new Exception($"Таблица {tableName} не найдена в модели");
-                }
+				}
 
 				var columnFromModel = tableFromModel.Columns.FirstOrDefault(column => column.Name == columnName);
 				if (columnFromModel == null)
-                {
+				{
 					throw new Exception($"Колонка {columnName} для таблицы {tableName} не найдена в модели");
 				}
-				
+
 				tableAlias = tableNamePrefix + tableIndex++;
 				this.usedTables.Add(tableName, tableAlias);
 			}
@@ -124,7 +124,7 @@ namespace RussianBI.Sql
 			var sumFunc = context.GetChild<RussianBIGrammarParser.SumFuncContext>(0);
 			var result = sumFunc.Accept(this);
 			if (measureName != null)
-            {
+			{
 				result += measureName.Accept(this);
 			}
 
