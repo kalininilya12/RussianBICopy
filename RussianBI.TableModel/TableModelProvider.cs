@@ -46,7 +46,65 @@ public class TableModelProvider
                 }
             }
         });
+        _model.Add(new Table
+        {
+            Guid = "74D1548E-CDFE-4DF3-A18C-9F07C32C2222",
+            Name = "facts",
+            Columns = new List<Column>
+            {
+                new()
+                {
+                    Guid = "8924D105-FBCE-4C39-AAF1-BBC050652222",
+                    Name = "productkey",
+                    DataType = ColumnDataType.Number
+                },
+                new()
+                {
+                    Guid = "8924D105-FBCE-4C39-AAF1-BdC050652222",
+                    Name = "regionkey",
+                    DataType = ColumnDataType.Number
+                },
+                new()
+                {
+                    Guid = "8924D105-FBCE-4C39-AAF1-BfC050652222",
+                    Name = "year",
+                    DataType = ColumnDataType.Number
+                },
+                new()
+                {
+                    Guid = "F0D0F625-9578-48AE-B4A3-7F136BA82222",
+                    Name = "amount",
+                    DataType = ColumnDataType.Number
+                },
+                new()
+                {
+                    Guid = "F0D0F625-9578-48AE-B4A3-7F136BA82222",
+                    Name = "sum",
+                    DataType = ColumnDataType.Number
+                }
+            }
+        });
+        _model.Add(new Table
+        {
+            Guid = "74D1548E-CDFE-4DF3-A18C-9F07C32C4444",
+            Name = "regions",
+            Columns = new List<Column>
+            {
+                new()
+                {
+                    Guid = "8924D105-FBCE-4C39-AAF1-BBC050654444",
+                    Name = "key",
+                    DataType = ColumnDataType.Number
+                },
+                new()
+                {
+                    Guid = "F0D0F625-9578-48AE-B4A3-7F136BA84444",
+                    Name = "name",
+                    DataType = ColumnDataType.String
+                }
+            }
+        });
     }
-    
+
     public List<Table> GetTableModel() => _model;
 }

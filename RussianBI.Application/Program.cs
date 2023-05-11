@@ -6,15 +6,19 @@ using TableModel;
 
 // Таблицы в системе
 var tableModel = new TableModelProvider().GetTableModel();
+var testFunction = new Action<string, List<Table>>((inputString, tableModel) =>
+{
+    var parser = new ExpressionParser();
+    var tree = parser.ParseQuery(inputString);
+    var resultSql = SqlBuilder.Build(tree, tableModel);
+    Console.WriteLine(resultSql);
+});
 
-// Формула - текстовый запрос от пользователя
-var inputString = "calc groupBy('dimproduct'[name], \"measureName\", SUM('sales'[amount]))";
-var parser = new ExpressionParser();
+var mainTest = "calc groupBy('dimproduct'[name], \"measureName\", SUM('sales'[amount]))";
+testFunction(mainTest, tableModel);
 
-// Дерево лексера, которое строится по результатам парсинга запроса
-var tree = parser.ParseQuery(inputString);
+var someColumnsTest = "calc groupBy('dimproduct'[name], 'regions'[name], \"measureName1\", SUM('facts'[amount]), \"measureName2\", SUM('facts'[sum]))";
+testFunction(someColumnsTest, tableModel);
 
-// TODO Реализовать тело метода
-var resultSql = SqlBuilder.Build(tree, tableModel);
-
-Console.WriteLine(resultSql);
+var negativeTest = "calc groupBy('dimproduct1'[name], 'regions'[name], \"measureName1\", SUM('facts'[amount]), \"measureName2\", SUM('facts'[sum]))";
+testFunction(negativeTest, tableModel);
